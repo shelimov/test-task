@@ -1,3 +1,4 @@
+```
 .
 ├── build
 │   ├── script.js
@@ -30,3 +31,4 @@
 │       └── views
 │           └── index.pug
 └── webpack.config.js
+```
