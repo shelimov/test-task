@@ -20,17 +20,18 @@ function get() {
     return res.json();
   }).then(response => response).then(json => {
     var l = json.length;
-    var el;
+    var el, els = [];
     count += l;
     for (var i = 0; i < l; i++) {
       el = json[i];
-      new Rep({
+      els.push({
         id: parseInt(el.id),
         name: el.name,
         author: el.owner.login,
         type: 0
-      }).save(err => console.log(err));
+      });
     }
+    Rep.create(els, error => if (error) console.log(error));
   }).then(() => {
     if (count < 1000)
       setTimeout(() => get(), 1000);

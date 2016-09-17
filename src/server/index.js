@@ -2,10 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import api from './api';
+import Promise from 'bluebird';
 import Repository from './db/mongo/models/repository';
+
 const app = express();
 mongoose.connect('mongodb://localhost:27017/echeleon')
-
+mongoose.Promise = Promise;
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.get('/', (req, res) => {

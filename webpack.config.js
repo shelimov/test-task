@@ -1,9 +1,12 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-module.exports = {
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+module.exports = [
+{
+  name: 'frontend',
   context: __dirname + '/src/client',
-  entry: ['./index', './style.scss'],
+  entry: './index',
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/build/client',
     filename: 'script.js'
   },
   module: {
@@ -14,7 +17,7 @@ module.exports = {
       exclude: /node_modules/
     },
     {
-      test: /\.scss$/,
+      test: /\.sass$/,
       loader: ExtractTextPlugin.extract('style-loader','css-loader!sass-loader'),
       exclude: /node_modules/
     }]
@@ -24,4 +27,33 @@ module.exports = {
       allChunks: true
     })
   ]
-}
+},
+{
+  name: 'backend',
+  entry: './index',
+  target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
+  context: __dirname + '/src/server',
+  externals: /^[a-z\-0-9]+$/,
+  output: {
+    path: __dirname + '/build/server',
+    // publicPath: __dirname + '/src/server',
+    filename: 'server.js',
+    libraryTarget: 'commonjs2'
+  },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    }]
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {from: 'views', to: 'views'}
+    ])
+  ]
+}]

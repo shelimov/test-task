@@ -2,29 +2,31 @@ import { REQUEST_RECEIVED, REQUEST_SEND, REQUEST_ERROR } from '../constants/acti
 const defaultState = {
   isFetching: false,
   response: null,
-  error: null
+  error: null,
+  uri: null
 }
 
-function query(state = defaultState, action) {
+function request(state = defaultState, action) {
   switch (action.type) {
-    case REQUEST_ERROR:
-      return Object.assign({}, state, {
-        isFetching: false,
-        error: action.payload.error
-      })
     case REQUEST_SEND:
       return Object.assign({}, state, {
         isFetching: true,
         response: null,
-        error: null
-      })
+        error: null,
+        uri: action.payload.uri
+      });
     case REQUEST_RECEIVED:
       return Object.assign({}, state, {
         isFetching: false,
         response: action.payload.response
-      })
+      });
+    case REQUEST_ERROR:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.payload.error
+      });
     default:
       return state;
   }
 }
-export default query;
+export default request;
