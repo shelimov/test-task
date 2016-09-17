@@ -5,19 +5,18 @@ const defaultState = {
   data: []
 }
 function search(state = defaultState, action) {
-  let { by, text, data } = action.payload;
   switch (action.type) {
     case CHANGE_SEARCH_BY:
       return Object.assign({}, state, {
-        by
+        by: action.payload.by
       });
     case CHANGE_SEARCH_TEXT:
       return Object.assign({}, state, {
-        text
+        text: action.payload.text
       });
     case CHANGE_SEARCH_DATA:
       return Object.assign({}, state, {
-        data
+        data: action.payload.data
       });
     default:
       return state;

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import pagination from './reducers/pagination';
 import content from './reducers/content';
@@ -10,5 +10,8 @@ const rootReducer = combineReducers({
   search,
   query
 });
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, compose(
+  applyMiddleware(thunk),
+  (window.devToolsExtension ? window.devToolsExtension() : f => f)
+));
 export default store;

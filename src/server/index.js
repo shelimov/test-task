@@ -1,19 +1,28 @@
-var express = require('express');
-var app = express();
-app.use('/static', express.static('./build'));
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import api from './api';
+import Repository from './db/mongo/models/repository';
+const app = express();
+mongoose.connect('mongodb://localhost:27017/echeleon')
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.render('index', {
     title: 'Test task',
     stylefile: '/static/style.css',
     scriptfile: '/static/script.js'
   });
 });
+
+app.use('/static', express.static(__dirname + '/../client'));
+app.use('/api', api);
+app.use(bodyParser.json());
 // handle 404
-app.use(function(req, res) {
+app.use((req, res) => {
   res.status(404).send('File not found');
 });
-app.listen(3000, function() {
+app.listen(3000, () => {
   console.log('Server started: http://localhost:3000');
 });

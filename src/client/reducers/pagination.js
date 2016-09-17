@@ -1,7 +1,7 @@
 import { CHANGE_PAGE, CHANGE_AVAILABLE_PAGES } from '../constants/actions';
 const defaultState = {
   page: null,
-  available: []
+  available: null
 }
 function pagination(state = defaultState, action) {
   switch (action.type) {
