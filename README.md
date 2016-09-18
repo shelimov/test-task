@@ -1,15 +1,6 @@
 ```
 .
-├── build
-│   ├── client
-│   │   ├── script.js
-│   │   └── style.css
-│   └── server
-│       ├── server.js
-│       └── views
-│           └── index.pug
 ├── makeDump.js
-├── npm-debug.log
 ├── package.json
 ├── README.md
 ├── src
@@ -26,7 +17,6 @@
 │   │   │   ├── pagination.js
 │   │   │   ├── pagination.sass
 │   │   │   ├── search.js
-│   │   │   ├── search.sass
 │   │   │   ├── table.js
 │   │   │   └── table.sass
 │   │   ├── constants
@@ -52,5 +42,5 @@
 │           └── index.pug
 └── webpack.config.js
 
-16 directories, 35 files
+12 directories, 29 files
 ```
