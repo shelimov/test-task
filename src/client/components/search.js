@@ -1,4 +1,3 @@
-import './search.sass';
 import React from 'react';
 import { COLUMN_TYPES, COLUMN_TYPES_KEYS } from '../constants/other';
 
