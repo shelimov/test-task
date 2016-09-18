@@ -34,10 +34,9 @@
 │   │   ├── fetch-middleware.js
 │   │   ├── index.js
 │   │   ├── reducers
-│   │   │   ├── content.js
-│   │   │   ├── pagination.js
 │   │   │   ├── request.js
-│   │   │   └── search.js
+│   │   │   ├── search.js
+│   │   │   └── views.js
 │   │   ├── store.js
 │   │   └── utils
 │   │       └── delayed-function.js
@@ -52,5 +51,5 @@
 │           └── index.pug
 └── webpack.config.js
 
-16 directories, 35 files
+16 directories, 34 files
 ```

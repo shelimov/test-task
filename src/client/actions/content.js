@@ -1,8 +1,19 @@
-import { CHANGE_CONTENT } from '../constants/actions';
+import { CHANGE_CONTENT, UPDATE_ROW } from '../constants/actions';
 
-export function changeContent(content) {
+export function changeContent(view, content) {
   return {
     type: CHANGE_CONTENT,
-    payload: content
+    payload: {
+      data: content,
+      view
+    }
+  }
+}
+export function updateRow(row) {
+  return {
+    type: UPDATE_ROW,
+    payload: {
+      row
+    }
   }
 }

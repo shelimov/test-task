@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
   });
 });
 
+app.use(bodyParser.json());
 app.use('/static', express.static(__dirname + '/../client'));
 app.use('/api', api);
-app.use(bodyParser.json());
 // handle 404
 app.use((req, res) => {
   res.status(404).send('File not found');

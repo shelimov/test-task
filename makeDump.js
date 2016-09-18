@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/echeleon');
 
 var RepositorySchema = new mongoose.Schema({
-  id: Number,
+  id: String,
   name: String,
   author: String,
-  type: Number
+  type: String
 });
 var Rep = mongoose.model('Repository', RepositorySchema);
 
@@ -25,13 +25,13 @@ function get() {
     for (var i = 0; i < l; i++) {
       el = json[i];
       els.push({
-        id: parseInt(el.id),
+        id: el.id,
         name: el.name,
         author: el.owner.login,
-        type: 0
+        type: 'Undefined'
       });
     }
-    Rep.create(els, error => if (error) console.log(error));
+    Rep.create(els, error => error && console.log(error));
   }).then(() => {
     if (count < 1000)
       setTimeout(() => get(), 1000);

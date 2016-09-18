@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 const RepositorySchema = new mongoose.Schema({
-  id: Number,
+  id: String,
   name: String,
   author: String,
-  type: Number
+  type: String
 });
 export default mongoose.model('Repository', RepositorySchema);

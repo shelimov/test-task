@@ -6,7 +6,7 @@ import {
 
 const Row = ({id, name, author, type, typeChange}) => {
   const options = REP_TYPES.map((type, index) => (
-      <option key={index} value={index}>{type}</option>
+      <option key={index} value={type.toLowerCase()}>{type}</option>
     )
   );
   const select = (

@@ -1,7 +1,6 @@
 import { API_URL, ROWS_PER_PAGE } from '../constants/other';
 import { requestSend } from './request';
-import { changeContent } from './content';
-import { changeSearchText, changeSearchData } from './search';
+import { changeContent, updateRow } from './content';
 import { changePage, changeAvailable } from './pagination'
 
 const calcAvailable = count => Math.ceil(count / ROWS_PER_PAGE);
@@ -10,9 +9,9 @@ export const getReps = page => (dispatch, getState) => {
   const { pagination } = getState();
   dispatch(requestSend(`${API_URL}reps/${page || pagination.page}`))
     .then(({list, count}) => {
-      dispatch(changePage(page));
-      dispatch(changeAvailable(calcAvailable(count)));
-      dispatch(changeContent(list));
+      dispatch(changePage('all', page));
+      dispatch(changeAvailable('all', calcAvailable(count)));
+      dispatch(changeContent('all', list));
     });
 }
 export const searchReps = page => (dispatch, getState) => {
@@ -25,13 +24,18 @@ export const searchReps = page => (dispatch, getState) => {
   const uri = `${API_URL}search/${page || pagination.page}/?by=${by}&q=${query}`;
   dispatch(requestSend(uri))
     .then(({list, count}) => {
-      dispatch(changePage(page))
-      dispatch(changeAvailable(calcAvailable(count)));
-      dispatch(changeSearchData(list));
+      dispatch(changePage('search', page))
+      dispatch(changeAvailable('search', calcAvailable(count)));
+      dispatch(changeContent('search', list));
     });
 }
 export const setType = (id, type) => (dispatch) => {
-  dispatch(requestSend(`${API_URL}/rep`, {
-    method: 'post',
-  }));
+  let headers = new Headers({
+    'Content-Type': 'application/json; charset=utf-8'
+  });
+  let body = JSON.stringify({id, type});
+  dispatch(requestSend(`${API_URL}rep`, { method: 'post', body, headers}))
+    .then(resp => {
+      updateRow
+    });
 }

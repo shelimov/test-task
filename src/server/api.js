@@ -42,10 +42,13 @@ router.get('/search/:page?', ({query, params}, res) => {
 router.post('/rep', ({body}, res) => {
   const { id, type } = body;
   if (!id || !type)
-    res.json({error: 'id and type is not specifed'});
+    res.json({error: 'id and(or) type is not specifed'});
   
-  Repository.findOneAndUpdate({id}, {type}).exec().then(response => {
-    res.json(response);
-  });
+  console.log(body, id, type);
+  Repository.findOneAndUpdate({id}, {type}, {new: true})
+    .exec()
+    .then(response => {
+      res.json(response);
+    });
 });
 export default router;

@@ -8,10 +8,13 @@ import { changeSearchBy, changeSearchText } from './actions/search';
 import { getReps, searchReps, setType } from './actions/fetch';
 import { SEARCH_DELAY } from './constants/other';
 import delayedFunction from './utils/delayed-function';
+
 const mapStateToPropsPagination = state => {
+  let { query } = state.search;
+  let { pagination } = query ? state.views.search : state.views.all;
   return {
-    current: state.pagination.page,
-    pages: state.pagination.available
+    current: pagination.page, 
+    pages: pagination.available
   }
 }
 const mapStateToPropsSearch = state => {
@@ -20,14 +23,23 @@ const mapStateToPropsSearch = state => {
   }
 }
 const mapStateToPropsContent = state => {
+  let { query } = state.search;
+  let { data } = query ? state.views.search : state.views.all;
   return {
-    content: state.search.query ? state.search.data : state.content,
+    content: data,
     isLoading: state.request.isFetching
   }
 }
 const mapDispatchToPropsPagination = dispatch => {
   return {
-    pageChange: page => dispatch(getReps(page))
+    pageChange: page => {
+      dispatch((dispatch, getState) => {
+        if (getState().search.query)
+          dispatch(searchReps(page))
+        else
+          dispatch(getReps(page))
+      });
+    }
   }
 }
 const mapDispatchToPropsSearch = dispatch => {
@@ -37,12 +49,17 @@ const mapDispatchToPropsSearch = dispatch => {
       dispatch(changeSearchText(q));
       search();
     },
-    typeChange: type => dispatch(changeSearchBy(type))
+    typeChange: type => {
+      dispatch(changeSearchBy(type));
+      dispatch(searchReps(1))
+    }
   }
 }
 const mapDispatchToPropsContent = dispatch => {
   return {
-    typeChange: (type, id) => dispatch(setType(type, id))
+    typeChange: (type, id) => {
+      dispatch(setType(type, id));
+    }
   }
 }
 
