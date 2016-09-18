@@ -16,9 +16,11 @@
 │   │   ├── actions
 │   │   │   ├── content.js
 │   │   │   ├── fetch.js
-│   │   │   ├── paginations.js
+│   │   │   ├── pagination.js
 │   │   │   ├── request.js
 │   │   │   └── search.js
+│   │   ├── app.js
+│   │   ├── app.sass
 │   │   ├── components
 │   │   │   ├── pagination.js
 │   │   │   ├── pagination.sass
@@ -31,13 +33,14 @@
 │   │   │   └── other.js
 │   │   ├── fetch-middleware.js
 │   │   ├── index.js
-│   │   ├── index.sass
 │   │   ├── reducers
 │   │   │   ├── content.js
 │   │   │   ├── pagination.js
 │   │   │   ├── request.js
 │   │   │   └── search.js
-│   │   └── store.js
+│   │   ├── store.js
+│   │   └── utils
+│   │       └── delayed-function.js
 │   └── server
 │       ├── api.js
 │       ├── db
@@ -49,5 +52,5 @@
 │           └── index.pug
 └── webpack.config.js
 
-15 directories, 33 files
+16 directories, 35 files
 ```

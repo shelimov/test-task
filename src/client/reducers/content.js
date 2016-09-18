@@ -1,13 +1,9 @@
 import { CHANGE_CONTENT } from '../constants/actions';
-const defaultState = {
-  content: []
-}
+const defaultState = [];
 function content(state = defaultState, action) {
   switch (action.type) {
     case CHANGE_CONTENT:
-      return {
-        content: action.payload.content
-      }
+      return action.payload;
     default:
       return state;
   }

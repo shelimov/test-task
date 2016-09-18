@@ -1,15 +1,12 @@
-import React from 'react';
 import './search.sass';
+import React from 'react';
+import { COLUMN_TYPES, COLUMN_TYPES_KEYS } from '../constants/other';
 
-const search = ({textChange, typeChange, activeType, types}) => {
-  let options = [];
-  for (let type in types) {
-    if (Object.prototype.hasOwnProperty.call(types, type)) {
-      options.push(
-        <option key={type} value={type}>{types[type]}</option>
-      )
-    }
-  }
+const search = ({textChange, typeChange, activeType}) => {
+  let options = COLUMN_TYPES_KEYS.map(key => (
+      <option key={key} value={key}>{COLUMN_TYPES[key]}</option>
+    )
+  );
   return (
     <div id="search">
       <input onChange={(e) => textChange(e.target.value)} type="text"/>

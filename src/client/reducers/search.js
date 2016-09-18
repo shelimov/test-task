@@ -1,7 +1,7 @@
 import { CHANGE_SEARCH_BY, CHANGE_SEARCH_TEXT, CHANGE_SEARCH_DATA } from '../constants/actions';
 const defaultState = {
-  by: null,
-  text: null,
+  by: 'name',
+  query: null,
   data: []
 }
 function search(state = defaultState, action) {
@@ -12,7 +12,7 @@ function search(state = defaultState, action) {
       });
     case CHANGE_SEARCH_TEXT:
       return Object.assign({}, state, {
-        text: action.payload.text
+        query: action.payload.query
       });
     case CHANGE_SEARCH_DATA:
       return Object.assign({}, state, {

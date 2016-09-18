@@ -12,7 +12,7 @@ function request(state = defaultState, action) {
       return Object.assign({}, state, {
         isFetching: true,
         response: null,
-        error: null,
+        error: false,
         uri: action.payload.uri
       });
     case REQUEST_RECEIVED:

@@ -9,11 +9,11 @@ export function changeSearchBy(by) {
     }
   }
 }
-export function changeSearchText(text) {
+export function changeSearchText(query) {
   return {
     type: CHANGE_SEARCH_TEXT,
     payload: {
-      text
+      query
     }
   }
 }

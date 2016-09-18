@@ -1,7 +1,17 @@
 export const
   COLUMN_TYPES = {
-    author: 'Автор',
-    date: 'Дата',
-    link: 'Ссылка'
+    id: "ID",
+    name: 'Name',
+    author: 'Author',
+    type: 'Type'
   },
-  ROWS_PER_PAGE: 20;
+  COLUMN_TYPES_KEYS = Object.keys(COLUMN_TYPES),
+  REP_TYPES = [
+    "Undefined",
+    "Website",
+    "Application"
+  ],
+  ROWS_PER_PAGE = 20,
+  API_URL = '/api/',
+  SEARCH_DELAY = 400,
+  PAGES_AROUND = 2;

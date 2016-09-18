@@ -1,11 +1,12 @@
 import { 
   REQUEST_SEND, REQUEST_RECEIVED, REQUEST_ERROR 
 } from '../constants/actions';
-export function requestSend(uri) {
+export function requestSend(uri, options = {}) {
   return {
     type: REQUEST_SEND,
-    payload: {
-      uri
+    fetch: {
+      uri,
+      options
     }
   }
 }
