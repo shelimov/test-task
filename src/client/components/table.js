@@ -10,14 +10,16 @@ const Row = ({id, name, author, type, typeChange}) => {
     )
   );
   const select = (
-    <select onChange={(e) => typeChange(id, e.target.value)} value={type}>
+    <select onChange={(e) => typeChange(id, e.target.value)} value={type.toLowerCase()}>
       {options}
     </select>
   );
   return (
     <tr>
       <td className="column-id">{id}</td>
-      <td className="column-name">{name}</td>
+      <td className="column-name">
+        <a href={`https://github.com/${author}/${name}`}>{name}</a>
+      </td>
       <td className="column-author">{author}</td>
       <td className="column-select">{select}</td>
     </tr>

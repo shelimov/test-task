@@ -2,23 +2,27 @@ $spinnerSize: 100px
 $spinnerBorder: 10px
 
 @keyframes spin
-    0%
-      transform: rotate(0deg)
-    100% 
-      transform: rotate(360deg)
+  0%
+    transform: rotate(0deg)
+  100% 
+    transform: rotate(360deg)
 table
   width: 100%
   position: relative
   border-collapse: collapse
   marin-bottom: 20px
+  & tr
+    height: 21px
+  & a
+    color: #000
+  & a:visited
+    color: #000
+
 
 #table-header
   height: 25px
   background: #eee
   font-size: 18px  
-
-table tr
-  height: 21px
 
 #loader
   position: absolute

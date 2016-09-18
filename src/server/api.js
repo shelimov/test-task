@@ -44,8 +44,11 @@ router.post('/rep', ({body}, res) => {
   if (!id || !type)
     res.json({error: 'id and(or) type is not specifed'});
   
-  console.log(body, id, type);
-  Repository.findOneAndUpdate({id}, {type}, {new: true})
+  let options = {
+    new: true,
+    fields: { _id: 0,id: 1,author: 1,type: 1,name: 1 }
+  }
+  Repository.findOneAndUpdate({id}, {type}, options)
     .exec()
     .then(response => {
       res.json(response);

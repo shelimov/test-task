@@ -25,7 +25,20 @@ function views(state = defaultStateViews, action) {
         [action.payload.view]: view(state[action.payload.view], action)
       });
     case UPDATE_ROW:
-      return 
+      let result = {};
+      let newRow = action.payload.row;
+      Object.keys(state).forEach(key => {
+        result[key] = Object.assign({}, state[key], {
+          data: state[key].data.map(function(row) {
+            console.log(row.id, newRow.id)
+            if (row.id == newRow.id)
+              return newRow;
+            else
+              return row;
+          })
+        });
+      });
+      return result;
     default:
       return state;
   }

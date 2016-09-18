@@ -35,7 +35,5 @@ export const setType = (id, type) => (dispatch) => {
   });
   let body = JSON.stringify({id, type});
   dispatch(requestSend(`${API_URL}rep`, { method: 'post', body, headers}))
-    .then(resp => {
-      updateRow
-    });
+    .then(resp => dispatch(updateRow(resp)));
 }

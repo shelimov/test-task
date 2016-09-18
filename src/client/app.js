@@ -57,9 +57,7 @@ const mapDispatchToPropsSearch = dispatch => {
 }
 const mapDispatchToPropsContent = dispatch => {
   return {
-    typeChange: (type, id) => {
-      dispatch(setType(type, id));
-    }
+    typeChange: (type, id) => dispatch(setType(type, id))
   }
 }
 

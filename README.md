@@ -9,6 +9,7 @@
 │       └── views
 │           └── index.pug
 ├── makeDump.js
+├── npm-debug.log
 ├── package.json
 ├── README.md
 ├── src
@@ -51,5 +52,5 @@
 │           └── index.pug
 └── webpack.config.js
 
-16 directories, 34 files
+16 directories, 35 files
 ```
