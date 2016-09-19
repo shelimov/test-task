@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var WebPack = require('webpack');
 module.exports = [
 {
   name: 'frontend',
@@ -25,6 +26,11 @@ module.exports = [
   plugins: [
     new ExtractTextPlugin('style.css', {
       allChunks: true
+    }),
+    new WebPack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: 'production'
+      }
     })
   ]
 },
